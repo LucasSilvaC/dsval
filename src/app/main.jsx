@@ -5,6 +5,6 @@ import AppRoutes from './appRoutes'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AppRoutes />
+      <AppRoutes />
   </StrictMode>,
 )

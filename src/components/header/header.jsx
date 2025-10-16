@@ -17,22 +17,21 @@ export default function Header() {
 
         <div className="h-full w-auto">
           <button
-            className="relative px-6 py-2 font-bold tracking-widest uppercase text-sm 
-            text-white bg-gradient-to-br from-[#ff4655] to-[#7a0010] 
+            className="relative h-full px-10 w-[200px] cursor-pointer font-bold tracking-widest uppercase
+            text-white bg-gradient-to-br from-[#ff4655]
             shadow-[0_0_10px_rgba(255,70,85,0.6)] 
             transition-all duration-300 
             hover:scale-105 hover:shadow-[0_0_20px_rgba(255,70,85,0.9)] 
-            active:scale-95"
+            active:scale-95 flex items-center justify-center"
             style={{
-              clipPath:
-                "polygon(8% 0%, 100% 0, 92% 100%, 0 100%)",
+              clipPath: "polygon(8% 0%, 100% 0, 92% 100%, 0 100%)",
             }}
           >
             <div className="flex items-center justify-center gap-2">
-              <Play className="w-4 h-4" />
-              <span>Jogar</span>
+              <span className="text-2xl">Play</span>
             </div>
           </button>
+
         </div>
 
         <div className="flex items-center gap-6">

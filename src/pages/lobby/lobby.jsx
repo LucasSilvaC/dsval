@@ -1,9 +1,9 @@
 import Header from "../../components/header/header";
-import ItemSelect from "../../components/organisms/ItemSelect/ItemSelect";
+import TasksSelection from "../../components/organisms/tasksSelection/TasksSelection";
 
 export default function Lobby() {
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden flex flex-col">
       <video
         className="absolute inset-0 w-full h-full object-cover z-[-1]"
         autoPlay
@@ -19,21 +19,11 @@ export default function Lobby() {
 
       <Header />
 
-      <div className="relative z-10 pt-24 pb-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-wide">
-              SELECIONE SEU AGENTE
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Escolha seu agente favorito e personalize suas habilidades para
-              dominar o campo de batalha
-            </p>
-          </div>
-
-          <ItemSelect />
+      <main className="flex flex-col z-10 justify-center items-center flex-1 px-4 py-12">
+        <div className="w-full mx-auto flex flex-col gap-12 items-center">
+          <TasksSelection />
         </div>
-      </div>
+      </main>
     </div>
   );
 }
