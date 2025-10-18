@@ -13,7 +13,7 @@ export default function Lobby() {
         playsInline
         aria-label="Animação de fundo do menu principal"
       >
-        <source src="" type="video/mp4" />
+        <source src="/videos/menuTheme.mp4" type="video/mp4" />
         Seu navegador não suporta vídeos em HTML5.
       </video>
 
