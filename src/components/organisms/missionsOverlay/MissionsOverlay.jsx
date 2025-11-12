@@ -14,7 +14,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
     getQuestionStatusText,
   } = useMissionsOverlay();
 
-  // Não renderiza o overlay se estiver fechado
   if (!isOpen) return null;
 
   return (
@@ -24,7 +23,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
       aria-modal="true"
       aria-label="Missões"
     >
-      {/* Botão para fechar o overlay */}
       <button
         onClick={onClose}
         className="absolute top-4 left-4 z-50 p-2 bg-gray-800/80 hover:bg-gray-700/80 rounded-lg transition-colors backdrop-blur-sm border border-gray-600"
@@ -45,7 +43,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
         </svg>
       </button>
 
-      {/* Container principal das missões */}
       <div className="w-full max-w-6xl max-h-[80vh] overflow-y-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center">
           {questions.map((question) => (
@@ -61,13 +58,11 @@ export default function MissionsOverlay({ isOpen, onClose }) {
               role="button"
               aria-label={`Missão: ${question.titulo}`}
             >
-              {/* Camada de gradiente para leitura do texto */}
               <div
                 className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"
                 aria-hidden="true"
               />
 
-              {/* Título e subtítulo da missão */}
               <div className="absolute top-3 left-3 right-3 z-20">
                 <h3 className="text-sm font-semibold text-white leading-tight mb-0.5">
                   {question.titulo}
@@ -77,7 +72,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
                 </p>
               </div>
 
-              {/* Área de conteúdo dinâmico (formulário ou status) */}
               <div className="absolute bottom-3 left-3 right-3 z-20">
                 {activeQuestionId === question.id ? (
                   <form
@@ -86,12 +80,9 @@ export default function MissionsOverlay({ isOpen, onClose }) {
                     onClick={(e) => e.stopPropagation()}
                     aria-label={`Responder à missão ${question.titulo}`}
                   >
-                    {/* Descrição da missão */}
                     <p className="text-gray-300 text-[11px] leading-snug mb-1">
                       {question.descricao}
                     </p>
-
-                    {/* Campo de resposta e botão de envio */}
                     <div className="flex gap-2 items-center">
                       <input
                         type="text"
@@ -111,7 +102,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
                       </button>
                     </div>
 
-                    {/* Feedback de resposta incorreta */}
                     {isCorrect[question.id] === false && (
                       <div className="flex justify-center mt-2">
                         <img
@@ -122,7 +112,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
                       </div>
                     )}
 
-                    {/* Feedback de resposta correta */}
                     {showSuccess[question.id] && (
                       <div className="flex justify-center mt-2">
                         <img
@@ -134,7 +123,6 @@ export default function MissionsOverlay({ isOpen, onClose }) {
                     )}
                   </form>
                 ) : (
-                  // Estado padrão do card
                   <div className="flex flex-col items-center justify-center h-full text-center">
                     <p className="text-gray-400 text-[11px]">
                       {getQuestionStatusText(question.id)}

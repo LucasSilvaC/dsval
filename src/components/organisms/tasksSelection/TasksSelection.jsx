@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "../../molecules/Card/Card";
 import MissionsOverlay from "../missionsOverlay/MissionsOverlay";
+import CameraOverlay from "../cameraOverlay/CameraOverlay";
 import jettImage from "../../../assets/agents/jett.png";
 import omenImage from "../../../assets/agents/omen.png";
 import gekkoImage from "../../../assets/agents/gekko.png";
@@ -8,8 +9,8 @@ import vyseImage from "../../../assets/agents/vyse.png";
 
 export default function TasksSelection() {
   const [isMissionsOpen, setIsMissionsOpen] = useState(false);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
 
-  // Lista de tarefas exibidas em cards
   const taskItems = [
     { title: "Missions", role: "Duelist", image: jettImage, agentName: "Jett" },
     {
@@ -22,14 +23,24 @@ export default function TasksSelection() {
     { title: "Maps", role: "Controller", image: omenImage, agentName: "Omen" },
   ];
 
-  // Abre o overlay de missões
   const openMissions = () => {
     setIsMissionsOpen(true);
   };
 
-  // Fecha o overlay de missões
-  const closeOverlay = () => {
+  const openCamera = () => {
+    setIsCameraOpen(true);
+  };
+
+  const closeMissionsOverlay = () => {
     setIsMissionsOpen(false);
+  };
+
+  const closeCameraOverlay = () => {
+    setIsCameraOpen(false);
+  };
+
+  const handleTakePicture = (imageData) => {
+    console.log("Foto tirada:", imageData);
   };
 
   return (
@@ -37,7 +48,6 @@ export default function TasksSelection() {
       className="relative flex flex-col gap-10 w-full"
       aria-labelledby="tasks-title"
     >
-      {/* Cabeçalho da seção */}
       <header className="text-center mb-8">
         <h1
           id="tasks-title"
@@ -47,7 +57,6 @@ export default function TasksSelection() {
         </h1>
       </header>
 
-      {/* Lista de cards de funções */}
       <div className="flex flex-col sm:flex-row gap-8 pb-6 px-4 justify-center items-center">
         {taskItems.map((task, index) => (
           <div key={index} className="flex-shrink-0">
@@ -56,15 +65,19 @@ export default function TasksSelection() {
               role={task.role}
               image={task.image}
               agentName={task.agentName}
-              onClick={task.title === "Missions" ? openMissions : undefined}
+              onClick={task.title === "Missions" ? openMissions : task.title === "Camera" ? openCamera : undefined}
               aria-label={`Selecionar ${task.title}`}
             />
           </div>
         ))}
       </div>
 
-      {/* Overlay de missões (renderizado apenas quando aberto) */}
-      <MissionsOverlay isOpen={isMissionsOpen} onClose={closeOverlay} />
+      <MissionsOverlay isOpen={isMissionsOpen} onClose={closeMissionsOverlay} />
+      <CameraOverlay
+        isOpen={isCameraOpen}
+        onClose={closeCameraOverlay}
+        onTakePicture={handleTakePicture}
+      />
     </section>
   );
 }
